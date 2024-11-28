@@ -56,7 +56,7 @@ public class LoopBannerActivity extends ComponentActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        banner.onDestroy();
+        banner.destroy();
     }
 
     @Override

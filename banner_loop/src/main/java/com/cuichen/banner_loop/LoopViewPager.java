@@ -232,7 +232,7 @@ public class LoopViewPager<LA extends LoopAdapter> extends FrameLayout {
         }
     }
 
-    public void onDestroy(){
+    public void destroy(){
         stopLoop();
         getViewPager2().unregisterOnPageChangeCallback(loopPageChangeCallback);
     }
