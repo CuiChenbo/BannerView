@@ -35,7 +35,7 @@ public class LoopBannerActivity extends ComponentActivity {
     private void initLoopViewPager() {
         LoopViewPager banner = findViewById(R.id.loop_vp);
         banner.setAdapter(new ImageAdapter(BaseData.getImgs()) , 3);
-        banner.setPageTransformer(new OverlapSeepPageTransformer(0.8f , BannerUtils.dp2px(30) ,0))
+        banner.setPageTransformer(new OverlapDeepPageTransformer(0.8f , BannerUtils.dp2px(30) ,0))
                 .setRecyclerViewPadding(BannerUtils.dp2px(40));
         banner.startLoop();
 
