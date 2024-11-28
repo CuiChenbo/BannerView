@@ -29,6 +29,7 @@ public class BannerMzActivity extends ComponentActivity {
     private void initLoopViewPager() {
 
         BannerViewPager banner = findViewById(R.id.lvp2);
+        banner.addBannerLifecycleObserver(this);
         banner.setAdapter(new BackGroundAdapter(BaseData.getColors()));
         banner.setPageTransformer(new ScaleInTransformer());
         banner.setRecyclerViewPadding(BannerUtils.dp2px(36));
@@ -38,6 +39,7 @@ public class BannerMzActivity extends ComponentActivity {
 
     private void initLoopViewPager2() {
         BannerViewPager banner = findViewById(R.id.lvp22);
+        banner.addBannerLifecycleObserver(this);
         banner.setAdapter(new ImageAdapter(BaseData.getImgs()));
         banner.setPageTransformer(new ScaleInTransformer());
         banner.setRecyclerViewPadding(BannerUtils.dp2px(36));

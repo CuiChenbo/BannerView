@@ -69,7 +69,8 @@ class MainActivity : ComponentActivity() {
 
     private fun initBanner() {
         val banner = findViewById<BannerViewPager>(R.id.banner)
-        banner.setAdapter(ImageAdapter(BaseData.getImgs()))
+        banner.addBannerLifecycleObserver(this)
+            .setAdapter(ImageAdapter(BaseData.getImgs()))
             .startLoop()
     }
 }

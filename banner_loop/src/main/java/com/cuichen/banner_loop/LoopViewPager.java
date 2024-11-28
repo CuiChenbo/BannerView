@@ -38,13 +38,14 @@ public class LoopViewPager<LA extends LoopAdapter> extends FrameLayout {
 
     public ViewPager2 mViewPager2;
     private OnLoopPageChangeCallback onLoopPageChangeCallback;
-    private final int mIncreaseCount = 2;
+    private LoopPageChangeCallback loopPageChangeCallback;
     private void init() {
         this.mTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop() / 2;
         this.mViewPager2 = new ViewPager2(context);
         this.mViewPager2.setLayoutParams(new LayoutParams(-1, -1));
         this.mViewPager2.setOffscreenPageLimit(2);
-        this.mViewPager2.registerOnPageChangeCallback(new LoopPageChangeCallback());
+        loopPageChangeCallback = new LoopPageChangeCallback();
+        this.mViewPager2.registerOnPageChangeCallback(loopPageChangeCallback);
         this.addView(this.mViewPager2);
         this.mLoopTask = new AutoLoopTask(this);
         ScrollSpeedManger.reflectLayoutManager(this);
@@ -229,6 +230,11 @@ public class LoopViewPager<LA extends LoopAdapter> extends FrameLayout {
         if(mIsAutoLoop) {
             getViewPager2().removeCallbacks(mLoopTask);
         }
+    }
+
+    public void onDestroy(){
+        stopLoop();
+        getViewPager2().unregisterOnPageChangeCallback(loopPageChangeCallback);
     }
 
     boolean mIsAutoLoop = true;

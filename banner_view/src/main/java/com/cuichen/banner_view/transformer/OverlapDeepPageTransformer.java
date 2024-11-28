@@ -5,6 +5,7 @@
 
 package com.cuichen.banner_view.transformer;
 
+import android.util.Log;
 import android.view.View;
 
 import com.cuichen.banner_view.transformer.common.BasePageTransformer;
@@ -72,6 +73,8 @@ public class OverlapDeepPageTransformer extends BasePageTransformer {
             float pp = position - rp;
             float scaleFactor = this.mMinScale + (1.0F - this.mMinScale) * (1.0F - Math.abs(pp));
             scaleFactor = Math.min(scaleFactor , mMinScale);
+
+            Log.i("CCB", "transformPage: "+position+"***"+rp+"***"+pp+"***"+scaleFactor);
 
             view.setTranslationX((float)(pageWidth-translationX) * -1);//X轴偏移到显示View的后方
             view.setScaleX(scaleFactor);

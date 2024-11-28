@@ -30,6 +30,7 @@ public class BannerOverSeepActivity extends ComponentActivity {
 
         BannerViewPager banner = findViewById(R.id.banner);
         banner.setAdapter(new ImageAdapter(BaseData.getImgs()))
+                .addBannerLifecycleObserver(this)
         .setPageTransformer(new OverlapDeepPageTransformer(0.8f , BannerUtils.dp2px(40) , BannerUtils.dp2px(6)))
         .setRecyclerViewPadding(BannerUtils.dp2px(60));
         banner.startLoop();
@@ -40,6 +41,7 @@ public class BannerOverSeepActivity extends ComponentActivity {
 
         BannerViewPager banner = findViewById(R.id.banner2);
         banner.setAdapter(new ImageAdapter(BaseData.getImgs()))
+                .addBannerLifecycleObserver(this)
                 .setPageTransformer(new RotateYTransformer())
                 .setRecyclerViewPadding(BannerUtils.dp2px(60));
         banner.startLoop();

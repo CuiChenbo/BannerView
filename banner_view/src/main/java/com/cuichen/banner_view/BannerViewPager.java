@@ -8,17 +8,20 @@ import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.LifecycleOwner;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.cuichen.banner_view.adapter.OnPageChangeListener;
+import com.cuichen.banner_view.utils.BannerLifecycleObserver;
+import com.cuichen.banner_view.utils.BannerLifecycleObserverAdapter;
 import com.cuichen.banner_view.utils.BannerUtils;
 import com.cuichen.banner_view.utils.ScrollSpeedManger;
 
 import java.lang.ref.WeakReference;
 
 
-public class BannerViewPager extends FrameLayout {
+public class BannerViewPager extends FrameLayout implements BannerLifecycleObserver {
 
   private Context context;
 
@@ -256,6 +259,14 @@ public class BannerViewPager extends FrameLayout {
         }
     }
 
+    public void destroy() {
+        if (getViewPager2() != null && mPageChangeCallback != null) {
+            getViewPager2().unregisterOnPageChangeCallback(mPageChangeCallback);
+            mPageChangeCallback = null;
+        }
+        stopLoop();
+    }
+
     boolean mIsAutoLoop = true;
     int mLoopTime = 5000;
     AutoLoopTask mLoopTask;
@@ -281,6 +292,28 @@ public class BannerViewPager extends FrameLayout {
             }
 
         }
+    }
+
+    public BannerViewPager addBannerLifecycleObserver(LifecycleOwner owner) {
+        if (owner != null) {
+            owner.getLifecycle().addObserver(new BannerLifecycleObserverAdapter(owner, this));
+        }
+        return this;
+    }
+
+    @Override
+    public void onStart(LifecycleOwner owner) {
+        startLoop();
+    }
+
+    @Override
+    public void onStop(LifecycleOwner owner) {
+        stopLoop();
+    }
+
+    @Override
+    public void onDestroy(LifecycleOwner owner) {
+        destroy();
     }
     
 }

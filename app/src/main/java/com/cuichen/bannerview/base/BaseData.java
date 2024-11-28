@@ -7,21 +7,17 @@ import java.util.Arrays;
 import java.util.List;
 
 public class BaseData {
-   static List<Integer> imgs =  Arrays.asList(
-    R.mipmap.advertise0,
-    R.mipmap.advertise1,
-    R.mipmap.advertise2,
-    R.mipmap.advertise3,
-    R.mipmap.advertise4,
-    R.mipmap.image1,
-    R.mipmap.image2,
-    R.mipmap.image4,
-    R.mipmap.image5,
-    R.mipmap.image7,
-    R.mipmap.image9
+    static List<Integer> imgs = Arrays.asList(
+            R.mipmap.banner13,
+            R.mipmap.banner14,
+            R.mipmap.banner5,
+            R.mipmap.banner7,
+            R.mipmap.banner9,
+            R.mipmap.banner12,
+            R.mipmap.banner8
     );
 
-   static List<Integer> cList = Arrays.asList(
+    static List<Integer> cList = Arrays.asList(
             R.color.teal_700,
             R.color.c_f90,
             R.color.teal_200,
@@ -31,11 +27,12 @@ public class BaseData {
             R.color.teal_700,
             R.color.purple_200
     );
-    public static List<Integer> getImgs(){
+
+    public static List<Integer> getImgs() {
         return imgs;
     }
 
-    public static List<Integer> getColors(){
+    public static List<Integer> getColors() {
         return cList;
     }
 }

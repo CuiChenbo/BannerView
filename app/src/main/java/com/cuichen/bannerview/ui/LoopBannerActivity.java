@@ -11,6 +11,8 @@ import com.cuichen.banner_loop.LoopViewPager;
 import com.cuichen.banner_loop.adapter.LoopAdapter;
 import com.cuichen.banner_loop.callback.OnLoopPageChangeCallback;
 import com.cuichen.banner_view.transformer.OverlapDeepPageTransformer;
+import com.cuichen.banner_view.transformer.common.MZScaleInTransformer;
+import com.cuichen.banner_view.transformer.common.ScaleInTransformer;
 import com.cuichen.banner_view.utils.BannerUtils;
 import com.cuichen.banner_view.view.BannerIndicator;
 import com.cuichen.bannerview.R;
@@ -32,10 +34,11 @@ public class LoopBannerActivity extends ComponentActivity {
         initLoopViewPager();
     }
 
+    LoopViewPager banner;
     private void initLoopViewPager() {
-        LoopViewPager banner = findViewById(R.id.loop_vp);
+        banner = findViewById(R.id.loop_vp);
         banner.setAdapter(new ImageAdapter(BaseData.getImgs()) , 3);
-        banner.setPageTransformer(new OverlapDeepPageTransformer(0.8f , BannerUtils.dp2px(30) ,0))
+        banner.setPageTransformer(new ScaleInTransformer(0.8f))
                 .setRecyclerViewPadding(BannerUtils.dp2px(40));
         banner.startLoop();
 
@@ -50,7 +53,23 @@ public class LoopBannerActivity extends ComponentActivity {
 
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        banner.onDestroy();
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        banner.startLoop();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        banner.stopLoop();
+    }
 
     public class ImageAdapter extends LoopAdapter<Integer, RecyclerView.ViewHolder> {
 

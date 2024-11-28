@@ -28,6 +28,7 @@ public class BannerOverActivity extends ComponentActivity {
     private void initLoopViewPager() {
 
         BannerViewPager banner = findViewById(R.id.banner);
+        banner.addBannerLifecycleObserver(this);
         banner.setAdapter(new ImageAdapter(BaseData.getImgs()));
         banner.setPageTransformer(new OverDepthPageTransformer(0.8f , BannerUtils.dp2px(50) , 0));
         banner.setRecyclerViewPadding(BannerUtils.dp2px(50));
@@ -38,6 +39,7 @@ public class BannerOverActivity extends ComponentActivity {
     private void initLoopViewPager2() {
 
         BannerViewPager banner = findViewById(R.id.banner2);
+        banner.addBannerLifecycleObserver(this);
         banner.setAdapter(new ImageAdapter(BaseData.getImgs()));
         banner.setPageTransformer(new OverDepthPageTransformer(0.8f , BannerUtils.dp2px(50) , BannerUtils.dp2px(20)));
         banner.setRecyclerViewPadding(BannerUtils.dp2px(50));

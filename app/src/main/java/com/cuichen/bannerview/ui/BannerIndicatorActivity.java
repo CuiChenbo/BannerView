@@ -27,6 +27,7 @@ public class BannerIndicatorActivity extends ComponentActivity {
     private void initLoopViewPager() {
 
         BannerViewPager banner = findViewById(R.id.banner);
+        banner.addBannerLifecycleObserver(this);
         banner.setAdapter(new ImageAdapter(BaseData.getImgs()));
         banner.startLoop();
 
