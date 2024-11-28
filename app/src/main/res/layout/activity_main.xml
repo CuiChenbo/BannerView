@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+  <androidx.core.widget.NestedScrollView
+      android:layout_width="match_parent"
+      android:layout_height="match_parent">
+
+      <LinearLayout
+          android:layout_marginTop="18dp"
+          android:orientation="vertical"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent">
+
+          <com.cuichen.banner_view.BannerViewPager
+              android:id="@+id/banner"
+              android:layout_width="match_parent"
+              android:layout_height="200dp"/>
+
+          <Button
+              android:layout_width="match_parent"
+              android:layout_height="45dp"
+              android:text="左右缩放（魅族效果）"
+              android:id="@+id/bt_mz"
+              />
+
+          <Button
+              android:layout_width="match_parent"
+              android:layout_height="45dp"
+              android:text="Banner: 缩放+位移重叠"
+              android:id="@+id/bt_over"
+              />
+
+          <Button
+              android:layout_width="match_parent"
+              android:layout_height="45dp"
+              android:text="Banner: 缩放+位移重叠+Y轴旋转"
+              android:id="@+id/bt_over_sp"
+              android:visibility="visible"
+              />
+
+          <Button
+              android:layout_width="match_parent"
+              android:layout_height="45dp"
+              android:text="Banner: 指示器"
+              android:id="@+id/bt_banner_indicator"
+              android:visibility="visible"
+              />
+
+          <Button
+              android:layout_width="match_parent"
+              android:layout_height="45dp"
+              android:text="Banner: (无限大Item实现)"
+              android:id="@+id/bt_banner_loop"
+              android:visibility="visible"
+              />
+
+
+
+      </LinearLayout>
+  </androidx.core.widget.NestedScrollView>
+
+</FrameLayout>
