@@ -5,23 +5,23 @@
 
 package com.cuichen.banner_view.transformer;
 
-import android.util.Log;
 import android.view.View;
 
 import com.cuichen.banner_view.transformer.common.BasePageTransformer;
 
 /**
- * 左右压边重叠效果+深景效果
+ * 左右压边重叠效果+深景效果+透明度
  */
-public class OverlapDeepPageTransformer extends BasePageTransformer {
+public class OverlapDeepAlphaTransformer extends BasePageTransformer {
     private float mMinScale = 0.82F;  //View居中缩放
     private float translationX = 300F;  //X轴（横向）偏移差
     private float rotationY = 10F; //Y轴内侧旋转距离
+    private float mMinAlpha = 0.7F; //透明度
 
-    public OverlapDeepPageTransformer() {
+    public OverlapDeepAlphaTransformer() {
     }
 
-    public OverlapDeepPageTransformer(float minScale , float translationX , int rotationY) {
+    public OverlapDeepAlphaTransformer(float minScale , float translationX , int rotationY) {
         this.mMinScale = minScale;
         this.translationX = translationX;
         this.rotationY = rotationY;
@@ -37,6 +37,7 @@ public class OverlapDeepPageTransformer extends BasePageTransformer {
             view.setScaleX(mMinScale);
             view.setScaleY(mMinScale);
             view.setElevation(mMinScale);
+            view.setAlpha(mMinAlpha);
 
             view.setPivotX(0);
             view.setPivotY(pageHeight/2f);
@@ -47,6 +48,8 @@ public class OverlapDeepPageTransformer extends BasePageTransformer {
             float scaleFactor = this.mMinScale + (1.0F - this.mMinScale) * (1.0F - Math.abs(position));
             view.setScaleX(scaleFactor); //X轴缩放
             view.setScaleY(scaleFactor);
+            float scaleAlpha = this.mMinAlpha + (1.0F - this.mMinAlpha) * (1.0F - Math.abs(position));
+            view.setAlpha(scaleAlpha);
             view.setElevation(scaleFactor); //布局层级
 
             view.setPivotX(0);
@@ -60,6 +63,9 @@ public class OverlapDeepPageTransformer extends BasePageTransformer {
             view.setScaleY(scaleFactor);
             view.setElevation(scaleFactor);
 
+            float scaleAlpha = this.mMinAlpha + (1.0F - this.mMinAlpha) * (1.0F - Math.abs(position));
+            view.setAlpha(scaleAlpha);
+
             view.setPivotX(pageWidth);
             view.setPivotY(pageHeight/2f);
             view.setRotationY(-rotationY*Math.abs(position));
@@ -70,6 +76,7 @@ public class OverlapDeepPageTransformer extends BasePageTransformer {
             view.setScaleX(mMinScale);
             view.setScaleY(mMinScale);
             view.setElevation(mMinScale);
+            view.setAlpha(mMinAlpha);
 
             view.setPivotX(pageWidth);
             view.setPivotY(pageHeight/2f);
