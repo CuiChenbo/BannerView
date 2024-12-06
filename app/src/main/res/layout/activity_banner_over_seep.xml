@@ -15,7 +15,7 @@
         <TextView
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="35dp"
-            android:text="居中缩放-View位移层叠-向内X轴旋转"
+            android:text="深景效果"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <com.cuichen.banner_view.BannerViewPager
@@ -28,7 +28,7 @@
         <TextView
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="35dp"
-            android:text="向外X轴旋转"
+            android:text="盒子效果"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 

@@ -2,6 +2,7 @@ package com.cuichen.bannerview.base;
 
 
 import com.cuichen.bannerview.R;
+import com.cuichen.bannerview.adapter.RvAdapter;
 
 import java.util.Arrays;
 import java.util.List;
@@ -32,7 +33,13 @@ public class BaseData {
         return imgs;
     }
 
+    public static List<Integer> getImgs_size2() {
+        return imgs.subList(0,2);
+    }
+
     public static List<Integer> getColors() {
         return cList;
     }
+
+
 }
