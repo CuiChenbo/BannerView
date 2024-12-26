@@ -7,6 +7,7 @@ import androidx.activity.ComponentActivity
 import com.cuichen.banner_view.BannerViewPager
 import com.cuichen.bannerview.adapter.ImageAdapter
 import com.cuichen.bannerview.base.BaseData
+import com.cuichen.bannerview.ui.BannerFragmentAct
 import com.cuichen.bannerview.ui.BannerIndicatorActivity
 import com.cuichen.bannerview.ui.BannerMzActivity
 import com.cuichen.bannerview.ui.BannerOverActivity
@@ -60,6 +61,14 @@ class MainActivity : ComponentActivity() {
                 Intent(
                     context,
                     LoopBannerActivity::class.java
+                )
+            )
+        }
+        findViewById<View>(R.id.bt_banner_fragment).setOnClickListener {
+            startActivity(
+                Intent(
+                    context,
+                    BannerFragmentAct::class.java
                 )
             )
         }

@@ -18,6 +18,14 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.Vh>{
        public List<String> datas = new ArrayList<>();
        public int Y = 0;
 
+       public void setDatas(List<String> datas){
+           if(datas == null){
+               datas = new ArrayList<>();
+           }
+           this.datas = datas;
+           notifyDataSetChanged();
+       }
+
         @NonNull
         @Override
         public Vh onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -27,7 +35,6 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.Vh>{
         @Override
         public void onBindViewHolder(@NonNull Vh holder, int position) {
              holder.tv.setText(position+ " INDEX ");
-             holder.tv2.setText("INDEX "+position);
         }
 
         @Override
@@ -40,7 +47,6 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.Vh>{
             public Vh(@NonNull View itemView) {
                 super(itemView);
                 tv = itemView.findViewById(R.id.tv);
-                tv2 = itemView.findViewById(R.id.tv2);
             }
         }
     }
