@@ -1,6 +1,7 @@
 package com.cuichen.bannerview.ui;
 
 import android.os.Bundle;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -14,6 +15,7 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.cuichen.banner_fragment.BannerFragmentView;
+import com.cuichen.banner_fragment.utils.BannerUtils;
 import com.cuichen.banner_view.BannerViewPager;
 import com.cuichen.banner_view.transformer.OverlapDeepPageTransformer;
 import com.cuichen.banner_view.transformer.common.MZScaleInTransformer;
@@ -53,11 +55,14 @@ public class BannerFragmentAct extends AppCompatActivity {
         fragmentList.add(ImgFragment.newInstance(R.mipmap.banner12)); //第一个数据添加到尾部
 
     }
+
+    TextView textViewIndex;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_banner_fragment);
         banner_fragment = findViewById(R.id.banner_fragment);
+        textViewIndex = findViewById(R.id.tv_index);
         initData();
         initView();
     }
@@ -70,6 +75,8 @@ public class BannerFragmentAct extends AppCompatActivity {
         banner_fragment.setRecyclerViewPadding(100);
         banner_fragment.getViewPager2().setOffscreenPageLimit(10);
         banner_fragment.getViewPager2().registerOnPageChangeCallback(onPageChangeCallback);
+
+        textViewIndex.setText(BannerUtils.getRealPosition(true , 1 , banner_fragment.getRealCount()) +"/"+ (banner_fragment.getRealCount()-1));
     }
 
 
@@ -79,6 +86,9 @@ public class BannerFragmentAct extends AppCompatActivity {
         public void onPageSelected(int position) {
             super.onPageSelected(position);
             mTempPosition = position;
+
+            textViewIndex.setText(BannerUtils.getRealPosition(true , position , banner_fragment.getRealCount()) +"/"+ (banner_fragment.getRealCount()-1));
+
         }
 
         @Override
