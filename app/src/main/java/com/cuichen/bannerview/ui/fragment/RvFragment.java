@@ -58,22 +58,35 @@ public class RvFragment extends Fragment {
         }
     }
 
+    View view;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_rv, container, false);
+        if (view == null)
+            view = inflater.inflate(R.layout.fragment_rv, container, false);
+        return view;
     }
 
     @Override
+    public void setUserVisibleHint(boolean isVisibleToUser) {
+        super.setUserVisibleHint(isVisibleToUser);
+        Log.i("BannerFragmentAct-Rv", "setUserVisibleHint: "+isVisibleToUser);
+    }
+
+    boolean isLoadData; //是否加载过数据了
+    @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        RecyclerView rv = view.findViewById(R.id.rv);
-        rv.setLayoutManager(new LinearLayoutManager(rv.getContext()));
-        RvAdapter rvAdapter = new RvAdapter();
-        rvAdapter.setDatas(Arrays.asList("", "", "", "", "", "", "", "", "", "", "", "", "", "", ""));
-        rv.setAdapter(rvAdapter);
-        Log.i("BannerFragmentAct-Rv", "BannerFragmentAct-Rv-onViewCreated: ");
+        if(!isLoadData) {
+            isLoadData = true;
+            RecyclerView rv = view.findViewById(R.id.rv);
+            rv.setLayoutManager(new LinearLayoutManager(rv.getContext()));
+            RvAdapter rvAdapter = new RvAdapter();
+            rvAdapter.setDatas(Arrays.asList("", "", "", "", "", "", "", "", "", "", "", "", "", "", ""));
+            rv.setAdapter(rvAdapter);
+            Log.i("BannerFragmentAct-Rv", "BannerFragmentAct-Rv-onViewCreated: ");
+        }
     }
 
 }

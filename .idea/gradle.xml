@@ -10,6 +10,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/banner_fragment" />
             <option value="$PROJECT_DIR$/banner_loop" />
             <option value="$PROJECT_DIR$/banner_view" />
           </set>
@@ -17,5 +18,6 @@
         <option name="resolveExternalAnnotations" value="false" />
       </GradleProjectSettings>
     </option>
+    <option name="offlineMode" value="true" />
   </component>
 </project>

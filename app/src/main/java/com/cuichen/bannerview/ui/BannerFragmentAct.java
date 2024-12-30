@@ -36,15 +36,21 @@ public class BannerFragmentAct extends AppCompatActivity {
 
     List<Fragment> fragmentList;
     private void initData() {
-//Fragment不可重复添加，所以要在创建时添加首尾数据
+
         fragmentList = new ArrayList<>();
         fragmentList.add(ImgFragment.newInstance(R.mipmap.banner12));
-        fragmentList.add(ImgFragment.newInstance(R.mipmap.banner5));
-        fragmentList.add(ImgFragment.newInstance(R.mipmap.banner7));
         fragmentList.add(WebFragment.newInstance());
-        fragmentList.add(RvFragment.newInstance());
-        fragmentList.add(ImgFragment.newInstance(R.mipmap.banner12));
         fragmentList.add(ImgFragment.newInstance(R.mipmap.banner5));
+        fragmentList.add(WebFragment.newInstance());
+        fragmentList.add(ImgFragment.newInstance(R.mipmap.banner7));
+        fragmentList.add(RvFragment.newInstance());
+        fragmentList.add(ImgFragment.newInstance(R.mipmap.banner13));
+        fragmentList.add(ImgFragment.newInstance(R.mipmap.banner14));
+        fragmentList.add(WebFragment.newInstance());
+
+        //Fragment不可重复添加，所以要在创建时添加首尾数据
+        fragmentList.add(0,WebFragment.newInstance()); //最后一个数据添加到第顶部
+        fragmentList.add(ImgFragment.newInstance(R.mipmap.banner12)); //第一个数据添加到尾部
 
     }
     @Override

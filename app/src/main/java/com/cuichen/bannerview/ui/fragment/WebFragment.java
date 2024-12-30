@@ -77,13 +77,15 @@ public class WebFragment extends Fragment {
         return view;
     }
 
-    WebView webView;
+    boolean isLoadData; //是否加载过数据了
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        if(this.webView == null) {
+        if(!isLoadData) {
+            isLoadData = true;
             Log.i("", "WebFragment_onViewCreated: ");
-            webView = view.findViewById(R.id.web_view);
+            WebView webView = view.findViewById(R.id.web_view);
+//            webView.loadUrl("https://blog.csdn.net/qq_35605213/article/details/129047092?spm=1001.2014.3001.5501");
             webView.loadUrl("https://blog.csdn.net/qq_35605213");
         }
     }
