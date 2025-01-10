@@ -3,21 +3,22 @@
 // (powered by FernFlower decompiler)
 //
 
-package com.cuichen.banner_fragment.utils;
+package com.cuichen.banner_view.utils;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.cuichen.banner_fragment.BannerFragmentView;
+
+import com.cuichen.banner_view.BannerFragmentView;
 
 import java.lang.reflect.Field;
 
-public class ScrollSpeedManger extends LinearLayoutManager {
+public class ScrollFragmentSpeedManger extends LinearLayoutManager {
     private BannerFragmentView banner;
 
-    public ScrollSpeedManger(BannerFragmentView banner, LinearLayoutManager linearLayoutManager) {
+    public ScrollFragmentSpeedManger(BannerFragmentView banner, LinearLayoutManager linearLayoutManager) {
         super(banner.getContext(), linearLayoutManager.getOrientation(), false);
         this.banner = banner;
     }
@@ -25,7 +26,7 @@ public class ScrollSpeedManger extends LinearLayoutManager {
     public void smoothScrollToPosition(RecyclerView recyclerView, RecyclerView.State state, int position) {
         LinearSmoothScroller linearSmoothScroller = new LinearSmoothScroller(recyclerView.getContext()) {
             protected int calculateTimeForDeceleration(int dx) {
-                return ScrollSpeedManger.this.banner.getScrollTime();
+                return ScrollFragmentSpeedManger.this.banner.getScrollTime();
             }
         };
         linearSmoothScroller.setTargetPosition(position);
@@ -38,7 +39,7 @@ public class ScrollSpeedManger extends LinearLayoutManager {
                 ViewPager2 viewPager2 = banner.getViewPager2();
                 RecyclerView recyclerView = (RecyclerView)viewPager2.getChildAt(0);
                 recyclerView.setOverScrollMode(2);
-                ScrollSpeedManger speedManger = new ScrollSpeedManger(banner, (LinearLayoutManager)recyclerView.getLayoutManager());
+                ScrollFragmentSpeedManger speedManger = new ScrollFragmentSpeedManger(banner, (LinearLayoutManager)recyclerView.getLayoutManager());
                 recyclerView.setLayoutManager(speedManger);
                 Field LayoutMangerField = ViewPager2.class.getDeclaredField("mLayoutManager");
                 LayoutMangerField.setAccessible(true);

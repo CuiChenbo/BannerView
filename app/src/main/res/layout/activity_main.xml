@@ -66,6 +66,13 @@
               android:id="@+id/bt_banner_fragment"
               android:visibility="visible"
               />
+          <Button
+              android:layout_width="match_parent"
+              android:layout_height="45dp"
+              android:text="ViewPager Activity"
+              android:id="@+id/bt_vp_act"
+              android:visibility="visible"
+              />
 
 
 

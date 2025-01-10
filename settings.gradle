@@ -23,4 +23,3 @@ rootProject.name = "BannerView"
 include ':app'
 include ':banner_view'
 include ':banner_loop'
-include ':banner_fragment'

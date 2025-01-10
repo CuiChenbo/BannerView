@@ -8,8 +8,8 @@
     android:layout_height="match_parent"
     tools:context=".ui.BannerFragmentAct">
 
-    <com.cuichen.banner_view.BannerFragmentView
-        android:id="@+id/banner_fragment"
+    <com.cuichen.bannerview.view.MyViewPager2
+        android:id="@+id/vp2"
         android:layout_marginTop="100dp"
         android:layout_marginBottom="100dp"
         android:layout_width="match_parent"

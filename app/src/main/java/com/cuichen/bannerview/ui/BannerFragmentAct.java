@@ -1,6 +1,7 @@
 package com.cuichen.bannerview.ui;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -11,14 +12,15 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.cuichen.banner_fragment.BannerFragmentView;
-import com.cuichen.banner_fragment.utils.BannerUtils;
+import com.cuichen.banner_view.BannerFragmentView;
 import com.cuichen.banner_view.BannerViewPager;
 import com.cuichen.banner_view.transformer.OverlapDeepPageTransformer;
 import com.cuichen.banner_view.transformer.common.MZScaleInTransformer;
+import com.cuichen.banner_view.utils.BannerUtils;
 import com.cuichen.bannerview.R;
 import com.cuichen.bannerview.ui.fragment.ImgFragment;
 import com.cuichen.bannerview.ui.fragment.RvFragment;
@@ -26,6 +28,8 @@ import com.cuichen.bannerview.ui.fragment.WebFragment;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicLong;
+import java.util.function.Consumer;
 
 /**
  * 仅供参考 - Banner中的Item使用Fragment
@@ -79,6 +83,19 @@ public class BannerFragmentAct extends AppCompatActivity {
         textViewIndex.setText(BannerUtils.getRealPosition(true , 1 , banner_fragment.getRealCount()) +"/"+ (banner_fragment.getRealCount()-1));
     }
 
+    public void onClick(View v){
+        int viewId = v.getId();
+        if(viewId == R.id.bt_add){
+            mAdapter.addFragment(2 , ImgFragment.newInstance(R.mipmap.banner9));
+            mAdapter.notifyDataSetChanged();
+            ((RecyclerView)banner_fragment.getViewPager2().getChildAt(0)).smoothScrollBy(20,0);
+        }else if(viewId == R.id.bt_remove){
+            mAdapter.removeFragment(2);
+            mAdapter.notifyDataSetChanged();
+            ((RecyclerView)banner_fragment.getViewPager2().getChildAt(0)).smoothScrollBy(20,0);
+        }
+    }
+
 
     ViewPager2.OnPageChangeCallback onPageChangeCallback = new ViewPager2.OnPageChangeCallback() {
         private int mTempPosition = -1;
@@ -108,6 +125,15 @@ public class BannerFragmentAct extends AppCompatActivity {
 
     private class MyFragmentStateAdapter extends FragmentStateAdapter {
         List<Fragment> fragments;
+
+
+        private List<Long> mIds = new ArrayList<>();
+
+        private AtomicLong mAtomicLong = new AtomicLong(0);
+        private long getAtomicGeneratedId() {
+            return mAtomicLong.incrementAndGet();
+        }
+
         public MyFragmentStateAdapter(@NonNull FragmentActivity fragmentActivity , List<Fragment> fragmentList) {
             super(fragmentActivity);
             if(fragmentList == null || fragmentList.isEmpty()){
@@ -115,8 +141,31 @@ public class BannerFragmentAct extends AppCompatActivity {
                 return;
             }
             this.fragments = fragmentList;
-
+            mIds.clear();
+            fragments.forEach(fragment -> mIds.add(getAtomicGeneratedId()));
         }
+
+        /**
+         * 添加
+         */
+        public void addFragment(int index, Fragment fragment) {
+            if (fragment != null && index >= 0 && index <= fragments.size()) {
+                fragments.add(index, fragment);
+                mIds.add(index, getAtomicGeneratedId());
+            }
+        }
+
+
+        /**
+         * 删除
+         */
+        public void removeFragment(int index) {
+            if (index >= 0 && index < fragments.size()) {
+                fragments.remove(index);
+                mIds.remove(index);
+            }
+        }
+
 
         @NonNull
         @Override
@@ -127,6 +176,17 @@ public class BannerFragmentAct extends AppCompatActivity {
         @Override
         public int getItemCount() {
             return fragments.size();
+        }
+
+
+        @Override
+        public long getItemId(int position) {
+            return mIds.get(position);
+        }
+
+        @Override
+        public boolean containsItem(long itemId) {
+            return mIds.contains(itemId);
         }
     };
 

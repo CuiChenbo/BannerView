@@ -13,6 +13,7 @@ import com.cuichen.bannerview.ui.BannerMzActivity
 import com.cuichen.bannerview.ui.BannerOverActivity
 import com.cuichen.bannerview.ui.BannerOverSeepActivity
 import com.cuichen.bannerview.ui.LoopBannerActivity
+import com.cuichen.bannerview.ui.ViewPagerActivity
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -69,6 +70,14 @@ class MainActivity : ComponentActivity() {
                 Intent(
                     context,
                     BannerFragmentAct::class.java
+                )
+            )
+        }
+        findViewById<View>(R.id.bt_vp_act).setOnClickListener {
+            startActivity(
+                Intent(
+                    context,
+                    ViewPagerActivity::class.java
                 )
             )
         }

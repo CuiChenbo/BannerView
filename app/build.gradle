@@ -59,7 +59,6 @@ dependencies {
     implementation libs.androidx.material3
     implementation project(':banner_view')
     implementation project(':banner_loop')
-    implementation project(':banner_fragment')
     testImplementation libs.junit
     androidTestImplementation libs.androidx.junit
     androidTestImplementation libs.androidx.espresso.core

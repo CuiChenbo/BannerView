@@ -1,4 +1,4 @@
-package com.cuichen.banner_fragment;
+package com.cuichen.banner_view;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 import androidx.viewpager2.widget.ViewPager2;
 
-import com.cuichen.banner_fragment.utils.ScrollSpeedManger;
+import com.cuichen.banner_view.utils.ScrollFragmentSpeedManger;
 
 import java.lang.ref.WeakReference;
 
@@ -43,7 +43,7 @@ public class BannerFragmentView extends FrameLayout {
         this.mViewPager2.setOffscreenPageLimit(2);
         this.addView(this.mViewPager2);
         this.mLoopTask = new AutoLoopTask(this);
-        ScrollSpeedManger.reflectLayoutManager(this);
+        ScrollFragmentSpeedManger.reflectLayoutManager(this);
     }
 
     public int getScrollTime(){
